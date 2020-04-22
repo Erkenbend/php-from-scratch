@@ -1,3 +1,11 @@
+<?php
+
+use Model\GuestBook;
+
+spl_autoload_register(function ($class_name) {
+    include $class_name . '.php';
+});
+?>
 <html>
 <head>
     <title>Guestbook</title>
@@ -15,7 +23,7 @@
         <td>Content</td>
     </tr>
     <?php
-    include_once 'GuestBook.php';
+    //include_once 'GuestBook.php';
     $entries = GuestBook::getAllEntries();
     foreach($entries as $entry){ ?>
         <tr>

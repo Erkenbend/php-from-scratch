@@ -1,12 +1,15 @@
 <?php
+namespace Model;
+spl_autoload_register(function ($class_name) {
+    include $class_name . '.php';
+});
 
-include_once "GuestBookEntry.php";
 class GuestBook
 {
     private static $con;
 
     /**
-     * @return PDO
+     * @return \PDO
      */
     private static function getConnection()
     {
@@ -17,10 +20,10 @@ class GuestBook
             $dbName = "example";
 
             try {
-                static::$con = new PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
+                static::$con = new \PDO("mysql:host=$serverName;dbname=$dbName", $username, $password);
                 // set the PDO error mode to exception
-                static::$con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            } catch(PDOException $e) {
+                static::$con->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            } catch(\PDOException $e) {
                 echo "Connection failed: " . $e->getMessage();
             }
         }
@@ -45,7 +48,7 @@ class GuestBook
     public static function getAllEntries() {
         $conn = self::getConnection();
         $sql = "Select * From GuestBookEntry";
-        $rawEntries =  $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        $rawEntries =  $conn->query($sql)->fetchAll(\PDO::FETCH_ASSOC);
         $results = [];
         foreach ($rawEntries as $entry) {
             $results[] = new GuestBookEntry($entry['firstName'], $entry['lastName'], $entry['content']);

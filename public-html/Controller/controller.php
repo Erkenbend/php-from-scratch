@@ -1,6 +1,11 @@
 <?php
-include_once 'GuestBookEntry.php';
-include_once 'GuestBook.php';
+
+use Model\GuestBook;
+use Model\GuestBookEntry;
+
+spl_autoload_register(function ($class_name) {
+    include '../' . $class_name . '.php';
+});
 
 //use GuestBookEntry;
 /*

@@ -8,13 +8,13 @@
     Welcome! Please register yourself
 </h1>
 
-<form method="post" action="controller.php">
+<form method="post" action="Controller/controller.php">
     First Name:<input type="text" size="12" maxlength="12" name="firstName"><br />
     Last Name:<input type="text" size="12" maxlength="36" name="lastName"><br />
     Content:<input type="text" size="12" maxlength="36" name="content"><br />
     <input type="submit">
 </form>
-<?php include 'ShowGuestBook.php';
+<?php include 'View/ShowGuestBook.php';
 ?>
 
 </body>
