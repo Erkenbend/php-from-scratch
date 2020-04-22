@@ -1,7 +1,3 @@
-<?php
-$Fname = $_POST["Fname"];
-$Lname = $_POST["Lname"];
-?>
 <html>
 <head>
 <title>Personal INFO</title>
@@ -9,14 +5,17 @@ $Lname = $_POST["Lname"];
 
 <body>
 <h1>
-    Welcome!
+    Welcome! Please register yourself
 </h1>
 
 <form method="post" action="controller.php">
-    First Name:<input type="text" size="12" maxlength="12" name="Fname"><br />
-    Last Name:<input type="text" size="12" maxlength="36" name="Lname"><br />
+    First Name:<input type="text" size="12" maxlength="12" name="firstName"><br />
+    Last Name:<input type="text" size="12" maxlength="36" name="lastName"><br />
+    Content:<input type="text" size="12" maxlength="36" name="content"><br />
     <input type="submit">
 </form>
+<?php include 'ShowGuestBook.php';
+?>
 
 </body>
 </html>
