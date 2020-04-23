@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.php7
+    depends_on:
+      - my-mysql-db
     volumes:
       # - ./public-html:/usr/local/apache2/htdocs/
       - ./public-html:/var/www/html/

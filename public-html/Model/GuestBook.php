@@ -38,8 +38,19 @@ class GuestBook
      */
     public static function addEntry($entry) {
         $conn = self::getConnection();
-        $sql = "Insert into GuestBookEntry(firstName,lastName,content) VALUES (?,?,?)";
-        return $conn->prepare($sql)->execute([$entry->getFirstName(),$entry->getLastName(),$entry->getContent()]);
+//        $sql = "Insert into GuestBookEntry(firstName,lastName,content) VALUES (?,?,?)";
+//        return $conn->prepare($sql)->execute([$entry->getFirstName(),$entry->getLastName(),$entry->getContent()]);
+
+        // This is vulnerable to SQL-Injection:
+        // using "'); TRUNCATE TABLE GuestBookEntry; -- " in content field will empty the table
+        $conn->query("INSERT INTO GuestBookEntry (firstName, lastName, content) VALUES ('" .
+            $entry->getFirstName() .
+            "', '" .
+            $entry->getLastName() .
+            "', '" .
+            $entry->getContent() .
+            "')");
+        return true;
     }
 
     /**
